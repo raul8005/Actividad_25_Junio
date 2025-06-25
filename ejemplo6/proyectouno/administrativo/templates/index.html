@@ -43,8 +43,7 @@
     <th><b>Tipo</b></th>
     <th><b>Edad</b></th>
     <th><b>Matriculas</b></th>
-
-    </tr>
+  </tr>
   {% for est in estudiantes %}
   <tr>
     <td>{{ est.nombre }}</td>
@@ -52,15 +51,18 @@
     <td>{{ est.tipo_estudiante }}</td>
     <td>{{ est.edad }}</td>
     <td>
-      <ul>
-        {% for mat in est.obtener_matriculas %}
-        <li>{{ mat.modulo.nombre }}: {{ mat.comentario }}</li>
-        {% empty %}
-        <li>Sin matrículas</li>
-        {% endfor %}
-      </ul>
-      <strong>Costo total: {{ est.costototal_matriculas|floatformat:0 }}</strong>
-    </td>
+    <ul>
+      {% for mat in est.obtener_matriculas %}
+      <li>{{ mat.modulo.nombre }}: {{ mat.comentario }} |
+        costo: {{ mat.costo }}</li>
+      {% empty %}
+      <li>Sin matrículas</li>
+      {% endfor %}
+    </ul>
+    {% if est.obtener_matriculas %}
+    <strong>Costo total: {{ est.costototal_matriculas|floatformat:0 }}</strong>
+    {% endif %}
+  </td>
   </tr>
   {% endfor %}
 </table>

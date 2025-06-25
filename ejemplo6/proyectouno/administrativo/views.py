@@ -15,13 +15,13 @@ def index(request):
     """
     matriculas = Matricula.objects.all()
     estudiantes = Estudiante.objects.all() 
-    total_matriculas = sum(m.costo for m in matriculas)
+    costototal_matriculas = sum(m.costo for m in matriculas)
 
     titulo = "Listado de matriculas"
     informacion_template = {'matriculas': matriculas,
     'numero_matriculas': len(matriculas), 'mititulo': titulo,
     'estudiantes': estudiantes,
-    'costototal_matriculas': total_matriculas,}
+    'costototal_matriculas': costototal_matriculas,}
     return render(request, 'index.html', informacion_template)
 
 

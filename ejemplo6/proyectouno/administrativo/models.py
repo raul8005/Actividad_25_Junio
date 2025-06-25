@@ -26,6 +26,9 @@ class Estudiante(models.Model):
 
     def obtener_matriculas(self):
         return self.lasmatriculas.all()
+    
+    def costototal_matriculas(self):
+        return sum(m.costo or 0 for m in self.lasmatriculas.all())
         
 
 class Modulo(models.Model):
@@ -62,5 +65,4 @@ class Matricula(models.Model):
         return "Matricula: Estudiante(%s) - Modulo(%s)" % \
                 (self.estudiante, self.modulo.nombre)
     
-    def costototal_matriculas(self):
-        return sum(m.costo for m in self.lasmatriculas.all())
+    
